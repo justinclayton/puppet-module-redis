@@ -1,5 +1,5 @@
 fixtures:
+  repositories:
+    epel: "http://github.com/justinclayton/puppet-module-epel.git"
   symlinks:
     redis: "#{source_dir}"
-    # XXX: move this up to the repositories section where it belongs
-    epel: "#{source_dir}/../../../puppet/librarian/epel"
