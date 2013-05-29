@@ -8,4 +8,4 @@ rvm:
 notifications:
   hipchat:
     rooms:
-      secure: "AN2ENxWixu7KFsNR2p7jl9xopoaIMTzRyu9Tl0jx3XyZDd/p2ArZsIfzvMsN\nMMrw/XFAkpaMCttjV1IBciq6xotRRCl33/fk/EcXvPDxRECw7sdMcEpjTdAA\n3ZiJTvls9HwM/uCB8oAF/t5n2uEDiS3oB3qCO1eY4TSVkNWZSNg="
+      secure: "W+yc+gLrrz0TBWL7x9q1AiBRDBDlUtIF9QiqsNINEIGQARQE8R7J3UcZ30jT\n9zq2IpCyP37NMV70Cp9YsrIa41K+NxwPhnpT4WdY8k10X2iTYQVN1ogpJpMM\nB6/bsSZPhh+wRyckB5pZjWPZhLrOkIGPBbepWFTLXh4hsOxWKww="
