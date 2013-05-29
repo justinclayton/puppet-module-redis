@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/justinclayton/puppet-module-redis.png?branch=master)](https://travis-ci.org/justinclayton/puppet-module-redis)
+
 Description
 -------
 This module installs redis from EPEL and manages the service, providing a very simple config.
