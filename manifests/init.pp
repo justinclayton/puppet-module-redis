@@ -1,5 +1,5 @@
 ## Installs and configures redis from epel
-class redis {
+class redis( $enable_epel = false ) {
 
   case $::osfamily {
     'RedHat': {
@@ -7,8 +7,10 @@ class redis {
       $service_name    = 'redis'
       $redis_conf_path = '/etc/redis.conf'
 
-      include epel
-      Class['epel'] -> Package['redis']
+      if $enable_epel {
+        include epel
+        Class['epel'] -> Package['redis']
+      }
     }
     'Debian': {
       $package_name    = 'redis-server'
