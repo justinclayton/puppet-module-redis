@@ -8,8 +8,28 @@ describe 'redis', :type => :class do
       }
     end
 
-    it 'should install epel' do
-      should include_class('epel')
+    context 'when enable_epel is true' do
+      let(:params) do
+        {
+          :enable_epel => true
+        }
+      end
+
+      it 'should install epel' do
+        should include_class('epel')
+      end
+    end
+
+    context 'when enable_epel is false' do
+      let(:params) do
+        {
+          :enable_epel => false
+        }
+      end
+
+      it 'should not install epel' do
+        should_not include_class('epel')
+      end
     end
 
     it 'should setup redis' do
