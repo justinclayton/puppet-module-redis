@@ -3,7 +3,9 @@ source 'https://rubygems.org'
 group :test do
   gem 'puppet'
   gem 'puppetlabs_spec_helper'
-  gem 'pinocchio', :git => 'http://github.com/justinclayton/pinocchio.git'
+  gem 'rspec-system-puppet'
+  gem 'rspec-system-serverspec'
+  gem 'rspec-puppet'
+  gem 'puppet-lint'
   gem 'travis'
-  gem 'redis'
 end
