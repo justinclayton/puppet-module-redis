@@ -1,36 +1,16 @@
-GIT
-  remote: http://github.com/justinclayton/pinocchio.git
-  revision: 99402562eaa2864da40831995d38dd5dcc94b069
-  specs:
-    pinocchio (0.0.1.pre)
-      cucumber
-      puppet
-      puppetlabs_spec_helper
-      vagrant-prison
-
 GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.3.4)
-    archive-tar-minitar (0.5.2)
     backports (3.3.1)
     builder (3.2.0)
-    childprocess (0.3.9)
-      ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
-    cucumber (1.3.2)
-      builder (>= 2.1.2)
-      diff-lcs (>= 1.1.3)
-      gherkin (~> 2.12.0)
-      multi_json (~> 1.3)
     diff-lcs (1.2.4)
-    erubis (2.7.0)
     facter (1.7.1)
     faraday (0.8.7)
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
-    ffi (1.8.1)
     gh (0.11.2)
       addressable
       backports
@@ -38,17 +18,13 @@ GEM
       multi_json (~> 1.0)
       net-http-persistent (>= 2.7)
       net-http-pipeline
-    gherkin (2.12.0)
-      multi_json (~> 1.3)
     hiera (1.2.1)
       json_pure
     highline (1.6.19)
-    i18n (0.6.4)
-    json (1.7.7)
     json_pure (1.8.0)
+    kwalify (0.7.2)
     launchy (2.3.0)
       addressable (~> 2.3)
-    log4r (1.1.10)
     metaclass (0.0.1)
     method_source (0.8.1)
     mocha (0.14.0)
@@ -61,6 +37,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
     netrc (0.7.7)
+    nokogiri (1.5.10)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -69,13 +46,17 @@ GEM
       facter (~> 1.6)
       hiera (~> 1.0)
       rgen (~> 0.6)
+    puppet-lint (0.3.2)
     puppetlabs_spec_helper (0.4.1)
       mocha (>= 0.10.5)
       rake
       rspec (>= 2.9.0)
       rspec-puppet (>= 0.1.1)
     rake (10.0.4)
-    redis (3.0.4)
+    rbvmomi (1.6.0)
+      builder
+      nokogiri (>= 1.4.1)
+      trollop
     rgen (0.6.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -87,7 +68,25 @@ GEM
     rspec-mocks (2.13.1)
     rspec-puppet (0.1.6)
       rspec
+    rspec-system (2.2.0)
+      kwalify (~> 0.7.2)
+      net-scp (~> 1.1)
+      net-ssh (~> 2.6)
+      nokogiri (~> 1.5.9)
+      rbvmomi (~> 1.6)
+      rspec (~> 2.13)
+      systemu (~> 2.5)
+    rspec-system-puppet (2.2.0)
+      rspec-system (~> 2.0)
+    rspec-system-serverspec (1.0.0)
+      rspec-system (~> 2.0)
+      serverspec (~> 0.6.0)
+    serverspec (0.6.30)
+      highline
+      net-ssh
+      rspec (~> 2.13.0)
     slop (3.4.5)
+    systemu (2.5.2)
     travis (1.2.2)
       backports
       faraday (~> 0.8)
@@ -98,24 +97,16 @@ GEM
       net-http-persistent (~> 2.8)
       netrc (~> 0.7)
       pry (~> 0.9)
-    vagrant-fixed-ssh (1.0.7)
-      archive-tar-minitar (= 0.5.2)
-      childprocess (~> 0.3.1)
-      erubis (~> 2.7.0)
-      i18n (~> 0.6.0)
-      json (>= 1.5.1, < 1.8.0)
-      log4r (~> 1.1.9)
-      net-scp
-      net-ssh
-    vagrant-prison (0.2.0)
-      vagrant-fixed-ssh (~> 1.0.7)
+    trollop (2.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  pinocchio!
   puppet
+  puppet-lint
   puppetlabs_spec_helper
-  redis
+  rspec-puppet
+  rspec-system-puppet
+  rspec-system-serverspec
   travis
