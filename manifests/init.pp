@@ -1,5 +1,8 @@
 ## Installs and configures redis from epel
-class redis( $enable_epel = true ) {
+class redis(
+  $enable_epel   = true,
+  $template_path = 'redis/redis.conf.erb'
+) {
 
   case $::osfamily {
     'RedHat': {
@@ -30,7 +33,7 @@ class redis( $enable_epel = true ) {
   file { 'redis.conf':
     ensure  => file,
     path    => $redis_conf_path,
-    content => template('redis/redis.conf.erb'),
+    content => template($template_path),
   }
 
   service { 'redis':
