@@ -1,5 +1,5 @@
 ## Installs and configures redis from epel
-class redis( $enable_epel = false ) {
+class redis( $enable_epel = true ) {
 
   case $::osfamily {
     'RedHat': {
