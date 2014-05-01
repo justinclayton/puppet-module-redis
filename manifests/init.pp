@@ -1,6 +1,6 @@
 ## Installs and configures redis from epel
 class redis(
-  $package_name  = undef,
+  $package_name  = 'UNSET',
   $enable_epel   = true,
   $template_path = 'redis/redis.conf.erb'
 ) {
@@ -26,7 +26,7 @@ class redis(
     }
   }
 
-  if ! $package_name {
+  if $package_name == 'UNSET' {
     $package_name_real = $os_package_name
   }
 
