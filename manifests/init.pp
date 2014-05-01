@@ -28,8 +28,9 @@ class redis(
 
   if $package_name == 'UNSET' {
     $package_name_real = $os_package_name
+  } else {
+    $package_name_real = $package_name
   }
-
 
   package { 'redis':
     ensure => installed,
