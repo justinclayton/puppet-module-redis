@@ -56,4 +56,16 @@ describe 'redis', :type => :class do
       should contain_service('redis').with_name('redis-server')
     end
   end
+  context 'when specifying custom package name' do
+    let(:facts) do
+      { :osfamily => 'RedHat' }
+    end
+    let(:params) do
+      { :package_name => 'custom-redis' }
+    end
+
+    it 'should use the custom package name' do
+      should contain_package('redis').with_name('custom-redis')
+    end
+  end
 end

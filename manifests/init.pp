@@ -1,12 +1,13 @@
 ## Installs and configures redis from epel
 class redis(
+  $package_name  = 'UNSET',
   $enable_epel   = true,
   $template_path = 'redis/redis.conf.erb'
 ) {
 
   case $::osfamily {
     'RedHat': {
-      $package_name    = 'redis'
+      $os_package_name = 'redis'
       $service_name    = 'redis'
       $redis_conf_path = '/etc/redis.conf'
 
@@ -16,7 +17,7 @@ class redis(
       }
     }
     'Debian': {
-      $package_name    = 'redis-server'
+      $os_package_name = 'redis-server'
       $service_name    = 'redis-server'
       $redis_conf_path = '/etc/redis/redis.conf'
     }
@@ -25,9 +26,15 @@ class redis(
     }
   }
 
+  if $package_name == 'UNSET' {
+    $package_name_real = $os_package_name
+  } else {
+    $package_name_real = $package_name
+  }
+
   package { 'redis':
     ensure => installed,
-    name   => $package_name,
+    name   => $package_name_real,
   }
 
   file { 'redis.conf':
