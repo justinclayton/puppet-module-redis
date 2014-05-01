@@ -27,13 +27,13 @@ class redis(
   }
 
   if ! $package_name {
-    $package_name = $os_package_name
+    $package_name_real = $os_package_name
   }
 
 
   package { 'redis':
     ensure => installed,
-    name   => $package_name,
+    name   => $package_name_real,
   }
 
   file { 'redis.conf':
