@@ -1,15 +1,24 @@
-## Installs and configures redis from epel
+## Installs and configures redis
+
 class redis(
-  $package_name  = 'UNSET',
+  $package_name  = undef,
   $enable_epel   = true,
-  $template_path = 'redis/redis.conf.erb'
+  $template_path = 'redis/redis.conf.erb',
+  $scl           = false,
 ) {
 
   case $::osfamily {
     'RedHat': {
-      $os_package_name = 'redis'
-      $service_name    = 'redis'
-      $redis_conf_path = '/etc/redis.conf'
+      if $scl {
+        $os_package_name = 'rh-redis32'
+        $service_name    = 'rh-redis32-redis'
+        $redis_conf_path = '/etc/opt/rh/rh-redis32/redis.conf'
+        }
+      else {
+        $os_package_name = 'redis'
+        $service_name    = 'redis'
+        $redis_conf_path = '/etc/redis.conf'
+        }
 
       if $enable_epel {
         include epel
@@ -26,15 +35,14 @@ class redis(
     }
   }
 
-  if $package_name == 'UNSET' {
+  if $package_name == undef {
     $package_name_real = $os_package_name
   } else {
     $package_name_real = $package_name
   }
 
-  package { 'redis':
+  package { $package_name_real:
     ensure => installed,
-    name   => $package_name_real,
   }
 
   file { 'redis.conf':
@@ -43,14 +51,13 @@ class redis(
     content => template($template_path),
   }
 
-  service { 'redis':
+  service { $service_name:
     ensure => running,
     enable => true,
-    name   => $service_name,
   }
 
   # relationships
-  Package['redis']   -> File['redis.conf']
-  File['redis.conf'] ~> Service['redis']
+  Package[$package_name_real]   -> File['redis.conf']
+  File['redis.conf'] ~> Service[$service_name]
 
 }
